@@ -6,6 +6,7 @@ import { complianceCategoryIsValid } from './validation';
 import * as models from './models';
 
 export { models as ComplianceModels };
+export { SetHandler } from './SetHandler';
 
 export interface TranslationStrings {
     genericError: string;

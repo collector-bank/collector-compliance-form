@@ -136,7 +136,7 @@ export class ComplianceFormQuestion extends React.Component<Props> {
     };
 
     private renderGroup() {
-        const { questions, answers, title, disabled, onAnswer, maxRepeat, parameters, translationStrings } = this.props;
+        const { questions, answers, title, description, disabled, onAnswer, maxRepeat, parameters, translationStrings } = this.props;
         const groupQuestionForm = groupQuestionFormBuilder(questions!, onAnswer, disabled, translationStrings);
 
         return (
@@ -151,6 +151,7 @@ export class ComplianceFormQuestion extends React.Component<Props> {
                     maxCount={maxRepeat}
                     translationStrings={translationStrings}
                 />
+                {description && <small>{description}</small>}
             </>
         );
     }
