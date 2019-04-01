@@ -1,0 +1,36 @@
+{
+    "title": "Compliance form",
+    "name": "collector-compliance-form",
+    "version": "1.0.0",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/collector-bank/compliance-form.git"
+    },
+    "devDependencies": {
+        "@types/react": ">=16.8",
+        "@types/react-css-collapse": "3.6.0",
+        "@types/react-dom": ">=16.8",
+        "collector-portal-framework": "15.3.4",
+        "react": "16.8.6",
+        "react-dom": "16.8.6",
+        "typescript": "3.4.1"
+    },
+    "peerDependencies": {
+        "@emotion/core": "10.0.10",
+        "collector-portal-framework": ">=15",
+        "react-dom": ">=16.8",
+        "react": ">=16.8"
+    },
+    "scripts": {
+        "build": "tsc",
+        "watch": "npm run build -- --watch",
+        "prepublishOnly": "npm run build"
+    },
+    "dependencies": {
+        "react-css-collapse": "3.6.0",
+        "react-router-dom": "5.0.0"
+    }
+}
