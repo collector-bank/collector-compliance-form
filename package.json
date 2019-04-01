@@ -1,13 +1,13 @@
 {
     "title": "Compliance form",
     "name": "collector-compliance-form",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "sideEffects": false,
     "repository": {
         "type": "git",
-        "url": "https://github.com/collector-bank/compliance-form.git"
+        "url": "https://github.com/collector-bank/collector-compliance-form"
     },
     "devDependencies": {
         "@types/react": ">=16.8",
