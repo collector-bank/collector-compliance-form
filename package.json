@@ -10,13 +10,21 @@
         "url": "https://github.com/collector-bank/collector-compliance-form"
     },
     "devDependencies": {
+        "@types/jest": "24.0.11",
         "@types/react": ">=16.8",
         "@types/react-css-collapse": "3.6.0",
         "@types/react-dom": ">=16.8",
         "collector-portal-framework": "15.3.4",
+        "jest": "24.6.0",
         "react": "16.8.6",
         "react-dom": "16.8.6",
+        "react-testing-library": "6.0.4",
+        "ts-jest": "24.0.1",
         "typescript": "3.4.1"
+    },
+    "dependencies": {
+        "react-css-collapse": "3.6.0",
+        "react-router-dom": "5.0.0"
     },
     "peerDependencies": {
         "@emotion/core": "10.0.10",
@@ -26,11 +34,7 @@
     },
     "scripts": {
         "build": "tsc",
-        "watch": "npm run build -- --watch",
-        "prepublishOnly": "npm run build"
-    },
-    "dependencies": {
-        "react-css-collapse": "3.6.0",
-        "react-router-dom": "5.0.0"
+        "prepublishOnly": "npm run build",
+        "test": "jest"
     }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Collapse from 'react-css-collapse';
 import styled from 'collector-portal-framework';
 import { ClassNames } from '@emotion/core';

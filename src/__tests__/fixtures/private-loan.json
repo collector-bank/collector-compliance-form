@@ -1,0 +1,216 @@
+{
+    "title": "Kompletterande frågor",
+    "extendedTitle": null,
+    "description": "Lorem ipsum...",
+    "extendedDescription": null,
+    "categoryType": 1,
+    "questions": [
+        {
+            "questionType": 0,
+            "selectType": 1,
+            "options": [
+                {
+                    "id": "70b94e2c-bea2-4df6-99d7-be1be5f16dc3",
+                    "text": "Samla eller betala andra lån/krediter/skulder",
+                    "followUpQuestions": []
+                },
+                {
+                    "id": "553ba40d-ecbb-4ef2-a6cd-377e839732e0",
+                    "text": "Boende/Renovering",
+                    "followUpQuestions": []
+                },
+                {
+                    "id": "51c28f50-d433-4ef7-a678-3b9db2d85560",
+                    "text": "Köp eller reparation av fordon (bil, båt, MC)",
+                    "followUpQuestions": []
+                },
+                {
+                    "id": "26d1c8fd-e740-4625-9993-7458f120677c",
+                    "text": "Resor",
+                    "followUpQuestions": []
+                },
+                {
+                    "id": "d64bc78e-aaf2-49f7-bbc6-1e0d7a4d6a30",
+                    "text": "Vård (tandläkare, operation m.m)",
+                    "followUpQuestions": []
+                },
+                {
+                    "id": "c40b9360-eb3b-41f9-ab87-bb0ae2e02777",
+                    "text": "Studier (körkort, högskola m.m)",
+                    "followUpQuestions": []
+                },
+                {
+                    "id": "0da70d2c-e42c-43ab-b20b-1699ceb16cc6",
+                    "text": "Investering",
+                    "followUpQuestions": []
+                },
+                {
+                    "id": "74d73327-d54f-4e29-a620-6f361088b19d",
+                    "text": "Egen konsumtion (elektronik, kläder, klockor, smycken m.m.)",
+                    "followUpQuestions": []
+                }
+            ],
+            "selectedOptions": null,
+            "id": "963b5810-db9e-479e-8aaa-18f1d425c2cf",
+            "title": "Vad ska du använda lånet till?",
+            "description": null,
+            "extendedTitle": null,
+            "extendedDescription": null,
+            "parameters": null
+        },
+        {
+            "questionType": 0,
+            "selectType": 0,
+            "options": [
+                {
+                    "id": "a46b2ebd-31fc-4199-b37a-6cdf62a2dfd3",
+                    "text": "Nej",
+
+                    "followUpQuestions": []
+                },
+                {
+                    "id": "efbb451e-4d28-40c8-96d9-8df3022beffb",
+                    "text": "Ja, jag är eller har varit PEP",
+                    "followUpQuestions": [
+                        {
+                            "questionType": 0,
+                            "selectType": 0,
+                            "options": [
+                                {
+                                    "id": "49c4a7a0-9e56-4c7d-b2d5-0ddfbfa2e152",
+                                    "text": "Statschef",
+                                    "followUpQuestions": []
+                                },
+                                {
+                                    "id": "4b098321-97a4-4561-a43f-cb6b34f4468f",
+                                    "text": "Regeringschef",
+                                    "followUpQuestions": []
+                                },
+                                {
+                                    "id": "383cf29e-75d3-45df-bcb0-7f13782f5002",
+                                    "text": "Minister",
+                                    "followUpQuestions": []
+                                },
+                                {
+                                    "id": "21e1a63b-28a3-4bb8-9b87-a2b315c8ef05",
+                                    "text": "Vice eller biträdande minister",
+                                    "followUpQuestions": []
+                                },
+                                {
+                                    "id": "d0e50611-199f-4a0a-b7c5-7f201ff776e3",
+                                    "text": "Parlamentsledamot",
+                                    "followUpQuestions": []
+                                },
+                                {
+                                    "id": "2d88ebb4-c439-49dc-9c24-c9c359c260a1",
+                                    "text": "Domare i högsta domstolen",
+                                    "followUpQuestions": []
+                                }
+                            ],
+                            "selectedOptions": null,
+                            "id": "3ca72653-2f97-4d85-a325-46e41bedcb27",
+                            "title": "Titel",
+                            "description": null,
+                            "extendedTitle": null,
+                            "extendedDescription": null,
+                            "parameters": null
+                        }
+                    ]
+                },
+                {
+                    "id": "b56c740c-517b-41bc-b775-afa06a07a68d",
+                    "text": "Ja, jag har nära anknytning till en PEP",
+                    "followUpQuestions": [
+                        {
+                            "questionType": 0,
+                            "selectType": 0,
+                            "options": [
+                                {
+                                    "id": "115f660c-f0a4-48a1-b71d-d1538e758599",
+                                    "text": "Make/maka, registrerad partner eller sambo",
+                                    "followUpQuestions": []
+                                },
+                                {
+                                    "id": "1ce32a5c-4b4e-4f09-ab7c-dd1b8ca205d6",
+                                    "text": "Barn",
+                                    "followUpQuestions": []
+                                },
+                                {
+                                    "id": "a93bf10e-e397-4c9f-a71d-ae87b8fd3d33",
+                                    "text": "Barns make/maka, registrerad partner eller sambo",
+                                    "followUpQuestions": []
+                                }
+                            ],
+                            "selectedOptions": null,
+                            "id": "0674ef6b-e3b0-46f2-ac41-3042b00fff21",
+                            "title": "Ange vem som är PEP",
+                            "description": null,
+                            "extendedTitle": null,
+                            "extendedDescription": null,
+                            "parameters": null
+                        },
+                        {
+                            "questionType": 0,
+                            "selectType": 0,
+                            "options": [
+                                {
+                                    "id": "cd0c2e23-3453-4f20-a877-65a53502e9a5",
+                                    "text": "Statschef",
+                                    "followUpQuestions": []
+                                },
+                                {
+                                    "id": "53f6b55d-f414-4bfa-9f77-158858c2aa99",
+                                    "text": "Regeringschef",
+                                    "followUpQuestions": []
+                                },
+                                {
+                                    "id": "54f94cc2-005d-48db-a3b7-3dac58230f11",
+                                    "text": "Minister",
+                                    "followUpQuestions": []
+                                }
+                            ],
+                            "selectedOptions": null,
+                            "id": "0b7a5dfc-2a5f-4f44-9811-83241bd7a8bb",
+                            "title": "Titel",
+                            "description": null,
+                            "extendedTitle": null,
+                            "extendedDescription": null,
+                            "parameters": null
+                        },
+                        {
+                            "questionType": 1,
+                            "maxLength": 0,
+                            "isMandatory": true,
+                            "answer": null,
+                            "id": "3b488056-c2ef-4884-9a74-6f92fbad5501",
+                            "title": "Namn",
+                            "description": null,
+                            "extendedTitle": null,
+                            "extendedDescription": null,
+                            "parameters": null
+                        },
+                        {
+                            "questionType": 1,
+                            "maxLength": 0,
+                            "isMandatory": false,
+                            "answer": null,
+                            "id": "98dfda53-ad8b-445c-8c31-13a664164d87",
+                            "title": "Personnummer",
+                            "description": null,
+                            "extendedTitle": null,
+                            "extendedDescription": null,
+                            "parameters": null
+                        }
+                    ]
+                }
+            ],
+            "selectedOptions": null,
+            "id": "5dc24fb1-f6ac-4ea5-a5ac-b155c9e9e58e",
+            "title": "Är du en politiskt exponerad person (PEP), har varit en PEP, eller har nära anknytning till en PEP?",
+            "description": null,
+            "extendedTitle": null,
+            "extendedDescription": "Att vara en politiskt exponerad person (PEP) innebär att man har, eller under de senast 18 månaderna har haft, en viktig offentlig funktion i en stat, ett statsägt företag eller ledningen i en internationell organisation. De yrken som det bland annat gäller är stats- och regeringschefer, parlamentsledamöter, ministrar, högre officerare, domare i högsta domstolen och ambassadörer.\n\nMan kan även vara en PEP om man har en nära anknytning till en sådan person, såsom en nära släkting (exempelvis make, maka, sambo, barn, förälder) eller en yrkesmässig relation (exempelvis om man äger en verksamhet tillsammans med en PEP, är verklig huvudman till en verksamhet som upprättats till förmån för en PEP, eller på annat sätt har nära förbindelse med en PEP).",
+            "parameters": null
+        }
+    ]
+}

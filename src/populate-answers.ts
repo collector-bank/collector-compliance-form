@@ -12,7 +12,7 @@ export const populateComplianceQuestionWithAnswer = (question: Question, answer:
     }
 };
 
-const populateSelectQuestionWithAnswer = (question: Question, answer: Answer) => {
+const populateSelectQuestionWithAnswer = (question: Question, answer: Answer): any => {
     const populatedQuestion: Question = { ...question };
 
     if (question.id === answer.questionId && answer.selectedOptions != null) {

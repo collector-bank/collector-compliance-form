@@ -7,9 +7,9 @@ export interface ComplianceProduct {
 
 export interface Category {
     title: string;
-    extendedTitle?: string;
+    extendedTitle?: string | null;
     description: string;
-    extendedDescription?: string;
+    extendedDescription?: string | null;
     categoryType: CategoryType;
     questions: Question[];
 }
@@ -19,16 +19,16 @@ export type Question = SelectQuestion & CountryQuestion & FreeTextQuestion & Gro
 interface QuestionBase {
     id: string;
     title: string;
-    extendedTitle?: string;
+    extendedTitle?: string | null;
     description: string;
-    extendedDescription?: string;
+    extendedDescription?: string | null;
     questionType: QuestionType;
 }
 
 export interface SelectQuestion extends QuestionBase {
     selectType: SelectQuestionType;
     options: SelectQuestionOption[];
-    selectedOptions?: SelectQuestionOption[];
+    selectedOptions?: SelectQuestionOption[] | null;
 }
 
 export interface CountryQuestion extends QuestionBase {
@@ -41,7 +41,7 @@ export interface CountryQuestion extends QuestionBase {
 export interface FreeTextQuestion extends QuestionBase {
     maxLength: number;
     isMandatory: boolean;
-    answer?: string;
+    answer?: string | null;
 }
 
 export interface GroupQuestion extends QuestionBase {
@@ -84,7 +84,7 @@ export type SelectedOption = SelectQuestionOption & CountryQuestionOption;
 
 export interface Answer {
     questionId: string;
-    selectedOptions?: SelectedOption[];
-    answer?: string;
-    answers?: Question[][];
+    selectedOptions?: SelectedOption[] | null;
+    answer?: string | null;
+    answers?: Question[][] | null;
 }

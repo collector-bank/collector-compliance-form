@@ -19,6 +19,7 @@
         "esModuleInterop": true
     },
     "exclude": [
-        "dist"
+        "dist",
+        "src/__tests__"
     ]
 }
