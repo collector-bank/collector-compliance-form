@@ -14,7 +14,7 @@ export interface Category {
     questions: Question[];
 }
 
-export type Question = SelectQuestion & CountryQuestion & FreeTextQuestion & GroupQuestion;
+export type Question = SelectQuestion | CountryQuestion | FreeTextQuestion | GroupQuestion;
 
 interface QuestionBase {
     id: string;
@@ -22,32 +22,35 @@ interface QuestionBase {
     extendedTitle?: string | null;
     description: string;
     extendedDescription?: string | null;
-    questionType: QuestionType;
 }
 
 export interface SelectQuestion extends QuestionBase {
+    questionType: 0;
     selectType: SelectQuestionType;
     options: SelectQuestionOption[];
     selectedOptions?: SelectQuestionOption[] | null;
 }
 
+export interface FreeTextQuestion extends QuestionBase {
+    questionType: 1;
+    maxLength: number;
+    isMandatory: boolean;
+    answer?: string | null;
+}
+
 export interface CountryQuestion extends QuestionBase {
+    questionType: 2;
     selectType: SelectQuestionType;
     options: CountryQuestionOption[];
     selectedOptions: CountryQuestionOption[];
     validationMessage: string;
 }
 
-export interface FreeTextQuestion extends QuestionBase {
-    maxLength: number;
-    isMandatory: boolean;
-    answer?: string | null;
-}
-
 export interface GroupQuestion extends QuestionBase {
+    questionType: 3;
     maxRepeat: number;
     questions: Question[];
-    answers: any[];
+    answers: Question[][];
 }
 
 export interface SelectQuestionOption {
@@ -80,7 +83,7 @@ export enum SelectQuestionType {
     Multiple = 1,
 }
 
-export type SelectedOption = SelectQuestionOption & CountryQuestionOption;
+export type SelectedOption = SelectQuestionOption | CountryQuestionOption;
 
 export interface Answer {
     questionId: string;

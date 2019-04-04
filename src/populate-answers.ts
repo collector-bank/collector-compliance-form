@@ -1,38 +1,48 @@
-import { Answer, SelectedOption, Question, QuestionType } from './models';
+import {
+    Answer,
+    CountryQuestion,
+    CountryQuestionOption,
+    FreeTextQuestion,
+    GroupQuestion,
+    Question,
+    SelectQuestion,
+    SelectQuestionOption
+} from './models';
 
-export const populateComplianceQuestionWithAnswer = (question: Question, answer: Answer) => {
+export const populateQuestionWithAnswer = (question: Question, answer: Answer): Question => {
     switch (question.questionType) {
-        case QuestionType.Select:
-        case QuestionType.Country:
+        case 0:
             return populateSelectQuestionWithAnswer(question, answer);
-        case QuestionType.FreeText:
+        case 1:
             return populateFreeTextQuestionWithAnswer(question, answer);
-        case QuestionType.Group:
+        case 2:
+            return populateCountryQuestionWithAnswer(question, answer);
+        case 3:
             return populateGroupQuestionWithAnswer(question, answer);
     }
 };
 
-const populateSelectQuestionWithAnswer = (question: Question, answer: Answer): any => {
-    const populatedQuestion: Question = { ...question };
+const populateSelectQuestionWithAnswer = (question: SelectQuestion, answer: Answer) => {
+    const populatedQuestion: SelectQuestion = { ...question };
 
     if (question.id === answer.questionId && answer.selectedOptions != null) {
-        populatedQuestion.selectedOptions = answer.selectedOptions;
+        populatedQuestion.selectedOptions = <SelectQuestionOption[]>answer.selectedOptions;
     }
 
     if (populatedQuestion.options) {
-        populatedQuestion.options = populatedQuestion.options.map((option: SelectedOption) => ({
+        populatedQuestion.options = populatedQuestion.options.map(option => ({
             ...option,
             followUpQuestions: option.followUpQuestions
-                ? option.followUpQuestions.map(quest => populateComplianceQuestionWithAnswer(quest, answer))
+                ? option.followUpQuestions.map(quest => populateQuestionWithAnswer(quest, answer))
                 : [],
         }));
     }
 
     if (populatedQuestion.selectedOptions) {
-        populatedQuestion.selectedOptions = populatedQuestion.selectedOptions.map((option: SelectedOption) => ({
+        populatedQuestion.selectedOptions = populatedQuestion.selectedOptions.map(option => ({
             ...option,
             followUpQuestions: option.followUpQuestions
-                ? option.followUpQuestions.map(quest => populateComplianceQuestionWithAnswer(quest, answer))
+                ? option.followUpQuestions.map(quest => populateQuestionWithAnswer(quest, answer))
                 : [],
         }));
     }
@@ -40,13 +50,23 @@ const populateSelectQuestionWithAnswer = (question: Question, answer: Answer): a
     return populatedQuestion;
 };
 
-const populateFreeTextQuestionWithAnswer = (question: Question, answer: Answer) => {
+const populateCountryQuestionWithAnswer = (question: CountryQuestion, answer: Answer) => {
+    const populatedQuestion: CountryQuestion = { ...question };
+
+    if (question.id === answer.questionId && answer.selectedOptions != null) {
+        populatedQuestion.selectedOptions = <CountryQuestionOption[]>answer.selectedOptions;
+    }
+
+    return populatedQuestion;
+};
+
+const populateFreeTextQuestionWithAnswer = (question: FreeTextQuestion, answer: Answer) => {
     return question.id === answer.questionId
         ? { ...question, ...answer }
         : question;
 };
 
-const populateGroupQuestionWithAnswer = (question: Question, answer: Answer) => {
+const populateGroupQuestionWithAnswer = (question: GroupQuestion, answer: Answer) => {
     const populatedQuestion: Question = { ...question };
 
     if (question.id === answer.questionId && answer.answers != null) {
@@ -54,7 +74,7 @@ const populateGroupQuestionWithAnswer = (question: Question, answer: Answer) => 
     }
 
     if (populatedQuestion.questions) {
-        populatedQuestion.questions = populatedQuestion.questions.map(quest => populateComplianceQuestionWithAnswer(quest, answer));
+        populatedQuestion.questions = populatedQuestion.questions.map(quest => populateQuestionWithAnswer(quest, answer));
     }
 
     return populatedQuestion;

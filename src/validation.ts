@@ -1,43 +1,34 @@
 import {
-    SelectedOption,
     Category,
-    Question,
-    SelectQuestion,
     CountryQuestion,
-    GroupQuestion,
     FreeTextQuestion,
-    QuestionType
+    GroupQuestion,
+    Question,
+    SelectQuestion
 } from './models';
 
-export const complianceCategoryIsValid = (complianceCategory: Category) => {
-    return complianceCategory.questions.every(complianceAnswerIsValid);
+export const categoryIsValid = (complianceCategory: Category) => {
+    return complianceCategory.questions.every(answerIsValid);
 };
 
-export const complianceAnswerIsValid = (question: Question): boolean => {
-    if (question.isMandatory === false) {
-        return true;
-    }
-
+export const answerIsValid = (question: Question): boolean => {
     switch (question.questionType) {
-        case QuestionType.Select:
-        case QuestionType.Country:
+        case 0:
             return selectAnswerIsValid(question);
-        case QuestionType.FreeText:
+        case 1:
             return freeTextAnswerIsValid(question);
-        case QuestionType.Group:
+        case 2:
+            return countryAnswerIsValid(question);
+        case 3:
             return groupIsValid(question);
     }
 };
 
-const selectAnswerIsValid = (question: SelectQuestion & CountryQuestion): boolean => {
+const selectAnswerIsValid = (question: SelectQuestion): boolean => {
     if (question.selectedOptions && question.selectedOptions.length > 0) {
-        return question.selectedOptions.every((selectedOption: SelectedOption) => {
-            if (selectedOption.validComplianceOption != null) {
-                return selectedOption.validComplianceOption;
-            }
-
+        return question.selectedOptions.every(selectedOption => {
             if (selectedOption.followUpQuestions) {
-                return selectedOption.followUpQuestions.every(complianceAnswerIsValid);
+                return selectedOption.followUpQuestions.every(answerIsValid);
             }
 
             return false;
@@ -47,8 +38,24 @@ const selectAnswerIsValid = (question: SelectQuestion & CountryQuestion): boolea
     return false;
 };
 
+const countryAnswerIsValid = (question: CountryQuestion): boolean => {
+    if (question.selectedOptions && question.selectedOptions.length > 0) {
+        return question.selectedOptions.every(selectedOption => {
+            if (selectedOption.validComplianceOption != null) {
+                return selectedOption.validComplianceOption;
+            } else {
+                return false;
+            }
+        });
+    }
+
+    return false;
+};
+
 const freeTextAnswerIsValid = (question: FreeTextQuestion): boolean => {
-    if (question.answer != null && question.answer !== '') {
+    if (question.isMandatory === false) {
+        return true;
+    } else if (question.answer != null && question.answer !== '') {
         return true;
     } else {
         return false;
@@ -57,7 +64,7 @@ const freeTextAnswerIsValid = (question: FreeTextQuestion): boolean => {
 
 const groupIsValid = (group: GroupQuestion): boolean => {
     if (group.answers && group.answers.length > 0) {
-        return group.answers.every(questions => questions.every(complianceAnswerIsValid));
+        return group.answers.every(questions => questions.every(answerIsValid));
     }
 
     return false;

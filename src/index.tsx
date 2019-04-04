@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { H2, Text } from 'collector-portal-framework/dist/components';
 import { ComplianceFormQuestion } from './FormQuestion';
-import { populateComplianceQuestionWithAnswer } from './populate-answers';
-import { complianceCategoryIsValid } from './validation';
+import { populateQuestionWithAnswer } from './populate-answers';
+import { categoryIsValid } from './validation';
 import * as models from './models';
 
 export { models as ComplianceModels };
@@ -29,10 +29,10 @@ export class ComplianceForm extends React.Component<Props> {
     private handleAnswer = (answer: models.Answer) => {
         const updatedCategory: models.Category = {
             ...this.props.category,
-            questions: this.props.category.questions.map(question => populateComplianceQuestionWithAnswer(question, answer)),
+            questions: this.props.category.questions.map(question => populateQuestionWithAnswer(question, answer)),
         };
 
-        this.props.onUpdate(updatedCategory, complianceCategoryIsValid(updatedCategory));
+        this.props.onUpdate(updatedCategory, categoryIsValid(updatedCategory));
     };
 
     render() {
@@ -42,7 +42,7 @@ export class ComplianceForm extends React.Component<Props> {
             <>
                 <H2>{category.title}</H2>
                 {category.description && <Text>{category.description}</Text>}
-                {category.questions.map((question: any) => (
+                {category.questions.map(question => (
                     <ComplianceFormQuestion
                         key={question.id}
                         translationStrings={this.props.translationStrings}

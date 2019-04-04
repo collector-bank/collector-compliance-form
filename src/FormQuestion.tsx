@@ -2,21 +2,22 @@ import * as React from 'react';
 import { CheckboxGroup, RadioButtonGroup, Input, Select, Alert, Label } from 'collector-portal-framework/dist/components';
 import { Description } from 'collector-portal-framework/dist/common/components/Input/Description';
 import { SetHandler } from './SetHandler';
-import { Answer, Question, QuestionType, SelectQuestionType, SelectedOption } from './models';
+import { Answer, Question, QuestionType, SelectQuestionType, SelectedOption, SelectQuestionOption, CountryQuestionOption } from './models';
 import { groupQuestionFormBuilder } from './GroupQuestion';
 import { TranslationStrings } from './';
+import { isFreeTextQuestion } from './type-guards';
 
 interface Props {
     id: string;
     description?: string;
-    extendedDescription?: string;
+    extendedDescription?: string | null;
     title: string;
     questionType: QuestionType;
-    answer?: string;
-    answers?: any[];
+    answer?: string | null;
+    answers?: Question[][] | null;
     selectType?: SelectQuestionType;
     options?: SelectedOption[];
-    selectedOptions?: SelectedOption[];
+    selectedOptions?: SelectedOption[] | null;
     validationMessage?: string;
     maxRepeat?: number;
     maxLength?: number;
@@ -93,6 +94,10 @@ export class ComplianceFormQuestion extends React.Component<Props> {
     };
 
     render() {
+        const unhandledQuestionType = (type: never): never => {
+            throw new Error(`Unhandled question type: ${type}`);
+        }
+
         switch (this.props.questionType) {
             case QuestionType.FreeText:
                 return this.renderFreeText();
@@ -103,14 +108,14 @@ export class ComplianceFormQuestion extends React.Component<Props> {
             case QuestionType.Group:
                 return this.renderGroup();
             default:
-                return null;
+                return unhandledQuestionType(this.props.questionType);
         }
     }
 
-    private changeGroupItems = (answers: any[]) => {
+    private changeGroupItems = (items: { [questionId: string]: Question }[][]) => {
         const answer = {
             questionId: this.props.id,
-            answers: answers.map(this.serializeGroupItems),
+            answers: items.map(this.serializeGroupItems),
         };
 
         this.props.onAnswer(answer);
@@ -129,15 +134,15 @@ export class ComplianceFormQuestion extends React.Component<Props> {
             const answers = this.serializeGroupItems(item);
             const firstAnswer = answers[0];
 
-            return firstAnswer.answer ? firstAnswer.answer : `${i + 1}`;
+            return isFreeTextQuestion(firstAnswer) && firstAnswer.answer ? firstAnswer.answer : `${i + 1}`;
         }
 
         return '';
     };
 
     private renderGroup() {
-        const { questions, answers, title, description, disabled, onAnswer, maxRepeat, parameters, translationStrings } = this.props;
-        const groupQuestionForm = groupQuestionFormBuilder(questions!, onAnswer, disabled, translationStrings);
+        const { questions, answers, title, description, disabled, maxRepeat, parameters, translationStrings } = this.props;
+        const groupQuestionForm = groupQuestionFormBuilder(questions!, disabled, translationStrings);
 
         return (
             <>
@@ -171,16 +176,17 @@ export class ComplianceFormQuestion extends React.Component<Props> {
     }
 
     private renderOptionGroup() {
-        const { selectType, disabled, options, onAnswer, selectedOptions, translationStrings } = this.props;
+        const { selectType, disabled, onAnswer, selectedOptions, translationStrings } = this.props;
+        const options = this.props.options as SelectQuestionOption[];
 
         if (!options) {
             return;
         }
 
-        const items: any = options.map(option => ({
+        const items = options.map(option => ({
             key: option.id,
             label: option.text,
-            child: option.followUpQuestions.map((question: any) => (
+            child: option.followUpQuestions.map(question => (
                 <ComplianceFormQuestion
                     translationStrings={translationStrings}
                     key={question.id}
@@ -206,7 +212,7 @@ export class ComplianceFormQuestion extends React.Component<Props> {
                 <CheckboxGroup
                     label={this.getLabel()}
                     items={items}
-                    checked={selectedOptions && selectedOptions.map(x => x.id)}
+                    checked={selectedOptions ? selectedOptions.map(x => x.id) : undefined}
                     disabled={disabled}
                     onChange={this.selectMultipleOption}
                 />
@@ -215,7 +221,8 @@ export class ComplianceFormQuestion extends React.Component<Props> {
     }
 
     private renderCountrySelector() {
-        const { disabled, options, selectedOptions, validationMessage } = this.props;
+        const { disabled, options, validationMessage } = this.props;
+        const selectedOptions = this.props.selectedOptions as CountryQuestionOption[];
 
         if (!options) {
             return;
