@@ -16,10 +16,8 @@
         "strictNullChecks": true,
         "suppressImplicitAnyIndexErrors": true,
         "noUnusedLocals": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "resolveJsonModule": true
     },
-    "exclude": [
-        "dist",
-        "src/__tests__"
-    ]
+    "exclude": ["dist", "src/__tests__"]
 }
