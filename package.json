@@ -1,7 +1,7 @@
 {
     "title": "Compliance form",
     "name": "collector-compliance-form",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "sideEffects": false,
@@ -10,17 +10,17 @@
         "url": "https://github.com/collector-bank/collector-compliance-form"
     },
     "devDependencies": {
-        "@types/jest": "24.0.11",
-        "@types/react": ">=16.8",
+        "@types/jest": "24.0.18",
+        "@types/react": "16.9.2",
         "@types/react-css-collapse": "3.6.0",
-        "@types/react-dom": ">=16.8",
-        "collector-portal-framework": "15.3.4",
-        "jest": "24.7.1",
-        "react": "16.8.6",
-        "react-dom": "16.8.6",
+        "@types/react-dom": "16.9.0",
+        "collector-portal-framework": "17.5.1",
+        "jest": "24.9.0",
+        "react": "16.9.0",
+        "react-dom": "16.9.0",
         "react-testing-library": "6.0.4",
-        "ts-jest": "24.0.1",
-        "typescript": "3.4.1"
+        "ts-jest": "24.0.2",
+        "typescript": "3.6.2"
     },
     "dependencies": {
         "react-css-collapse": "3.6.0",

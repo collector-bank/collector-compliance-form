@@ -13,18 +13,14 @@ const translationStrings = {
     save: 'save',
     edit: 'edit',
     remove: 'remove',
-}
+};
 
 afterEach(cleanup);
 
 it('renders without crashing', () => {
     render(
         <CollectorPortalFramework>
-            <ComplianceForm
-                category={privateLoan}
-                onUpdate={() => {}}
-                translationStrings={translationStrings}
-            />
+            <ComplianceForm category={privateLoan} onUpdate={() => {}} translationStrings={translationStrings} />
         </CollectorPortalFramework>
     );
 });

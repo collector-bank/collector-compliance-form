@@ -21,20 +21,18 @@ const ItemLabel = styled.div({
     fontWeight: 500,
 });
 
-const ItemContainer = styled.div<{ isEditing: boolean }>(
-    ({ isEditing, theme }) => ({
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        border: '1px solid',
-        borderColor: theme.colors.lightGray,
-        padding: 16,
-        marginBottom: 16,
-        opacity: isEditing ? 0.5 : 1,
-        pointerEvents: isEditing ? 'none' : 'initial',
-    })
-);
+const ItemContainer = styled.div<{ isEditing: boolean }>(({ isEditing, theme }) => ({
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    border: '1px solid',
+    borderColor: theme.colors.lightGray,
+    padding: 16,
+    marginBottom: 16,
+    opacity: isEditing ? 0.5 : 1,
+    pointerEvents: isEditing ? 'none' : 'initial',
+}));
 
 type Item = any;
 
@@ -168,7 +166,7 @@ export class SetHandler extends React.Component<Props, State> {
                 </FormContainer>
 
                 <ButtonGroup>
-                    <Button onClick={this.cancelEdit} type="text" size="small">
+                    <Button onClick={this.cancelEdit} kind="text" size="small">
                         {this.props.translationStrings.cancel}
                     </Button>
                     <Button onClick={this.saveEdit} size="small" disabled={!this.state.itemIsValid}>
@@ -187,10 +185,10 @@ export class SetHandler extends React.Component<Props, State> {
                         <ItemLabel>{this.props.labelFn(item, i)}</ItemLabel>
 
                         <ButtonGroup>
-                            <Button onClick={() => this.editItem(item, i)} type="secondary" size="small">
+                            <Button onClick={() => this.editItem(item, i)} kind="secondary" size="small">
                                 {this.props.translationStrings.edit}
                             </Button>
-                            <Button onClick={() => this.removeItem(item)} type="secondary" size="small">
+                            <Button onClick={() => this.removeItem(item)} kind="secondary" size="small">
                                 {this.props.translationStrings.remove}
                             </Button>
                         </ButtonGroup>

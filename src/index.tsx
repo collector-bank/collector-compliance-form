@@ -4,6 +4,7 @@ import { ComplianceFormQuestion } from './FormQuestion';
 import { populateQuestionWithAnswer } from './populate-answers';
 import { categoryIsValid } from './validation';
 import * as models from './models';
+import { useEffect, useState } from 'react';
 
 export { models as ComplianceModels };
 export { SetHandler } from './SetHandler';
@@ -25,32 +26,27 @@ interface Props {
     translationStrings: TranslationStrings;
 }
 
-export class ComplianceForm extends React.Component<Props> {
-    private handleAnswer = (answer: models.Answer) => {
-        const updatedCategory: models.Category = {
-            ...this.props.category,
-            questions: this.props.category.questions.map(question => populateQuestionWithAnswer(question, answer)),
-        };
+export const ComplianceForm: React.FC<Props> = ({ category, onUpdate, translationStrings }) => {
+    const [updatedCategory, setUpdatedCategory] = useState<models.Category>(category);
 
-        this.props.onUpdate(updatedCategory, categoryIsValid(updatedCategory));
+    const handleAnswer = (answer: models.Answer) => {
+        setUpdatedCategory({
+            ...category,
+            questions: category.questions.map(question => populateQuestionWithAnswer(question, answer)),
+        });
     };
 
-    render() {
-        const { category } = this.props;
+    useEffect(() => {
+        onUpdate(updatedCategory, categoryIsValid(updatedCategory));
+    }, [onUpdate, updatedCategory]);
 
-        return (
-            <>
-                <H2>{category.title}</H2>
-                {category.description && <Text>{category.description}</Text>}
-                {category.questions.map(question => (
-                    <ComplianceFormQuestion
-                        key={question.id}
-                        translationStrings={this.props.translationStrings}
-                        onAnswer={this.handleAnswer}
-                        {...question}
-                    />
-                ))}
-            </>
-        );
-    }
-}
+    return (
+        <>
+            <H2>{category.title}</H2>
+            {category.description && <Text>{category.description}</Text>}
+            {category.questions.map((question: any) => (
+                <ComplianceFormQuestion key={question.id} translationStrings={translationStrings} onAnswer={handleAnswer} {...question} />
+            ))}
+        </>
+    );
+};
