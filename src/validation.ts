@@ -4,7 +4,8 @@ import {
     FreeTextQuestion,
     GroupQuestion,
     Question,
-    SelectQuestion
+    SelectQuestion,
+    BeneficialOwnersQuestion
 } from './models';
 
 export const categoryIsValid = (complianceCategory: Category) => {
@@ -21,6 +22,8 @@ export const answerIsValid = (question: Question): boolean => {
             return countryAnswerIsValid(question);
         case 3:
             return groupIsValid(question);
+        case 4:
+            return beneficialOwnersIsValid(question);
     }
 };
 
@@ -69,3 +72,7 @@ const groupIsValid = (group: GroupQuestion): boolean => {
 
     return false;
 };
+
+const beneficialOwnersIsValid = (question : BeneficialOwnersQuestion) : boolean => {
+    return true;
+}

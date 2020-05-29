@@ -6,7 +6,8 @@ import {
     GroupQuestion,
     Question,
     SelectQuestion,
-    SelectQuestionOption
+    SelectQuestionOption,
+    BeneficialOwnersQuestion
 } from './models';
 
 export const populateQuestionWithAnswer = (question: Question, answer: Answer): Question => {
@@ -19,6 +20,8 @@ export const populateQuestionWithAnswer = (question: Question, answer: Answer): 
             return populateCountryQuestionWithAnswer(question, answer);
         case 3:
             return populateGroupQuestionWithAnswer(question, answer);
+        case 4:
+            return populateBeneficialOwnersQuestionWithAnswer(question, answer);
     }
 };
 
@@ -78,4 +81,10 @@ const populateGroupQuestionWithAnswer = (question: GroupQuestion, answer: Answer
     }
 
     return populatedQuestion;
+};
+
+const populateBeneficialOwnersQuestionWithAnswer = (question: BeneficialOwnersQuestion, answer: Answer) => {
+    return question.id === answer.questionId
+        ? { ...question, ...answer }
+        : question;
 };

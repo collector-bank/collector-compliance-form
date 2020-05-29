@@ -1,4 +1,4 @@
-import { Question, QuestionType, SelectQuestion, FreeTextQuestion, CountryQuestion, GroupQuestion } from './models';
+import { Question, QuestionType, SelectQuestion, FreeTextQuestion, CountryQuestion, GroupQuestion, BeneficialOwnersQuestion } from './models';
 
 export const isSelectQuestion = (question: Question): question is SelectQuestion =>
     question.questionType === QuestionType.Select;
@@ -11,3 +11,6 @@ export const isCountryQuestion = (question: Question): question is CountryQuesti
 
 export const isGroupQuestion = (question: Question): question is GroupQuestion =>
     question.questionType === QuestionType.Group;
+
+export const isBeneficialOwnersQuestion = (question: Question): question is BeneficialOwnersQuestion =>
+    question.questionType === QuestionType.BeneficialOwners;

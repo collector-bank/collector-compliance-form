@@ -14,7 +14,7 @@ export interface Category {
     questions: Question[];
 }
 
-export type Question = SelectQuestion | CountryQuestion | FreeTextQuestion | GroupQuestion;
+export type Question = SelectQuestion | CountryQuestion | FreeTextQuestion | GroupQuestion | BeneficialOwnersQuestion;
 
 interface QuestionBase {
     id: string;
@@ -53,6 +53,10 @@ export interface GroupQuestion extends QuestionBase {
     answers: Question[][];
 }
 
+export interface BeneficialOwnersQuestion extends QuestionBase {
+    questionType: 4;
+}
+
 export interface SelectQuestionOption {
     id: string;
     text: string;
@@ -75,7 +79,8 @@ export enum QuestionType {
     Select = 0,
     FreeText = 1,
     Country = 2,
-    Group = 3
+    Group = 3,
+    BeneficialOwners = 4
 }
 
 export enum SelectQuestionType {
