@@ -107,6 +107,8 @@ export class ComplianceFormQuestion extends React.Component<Props> {
                 return this.renderCountrySelector();
             case QuestionType.Group:
                 return this.renderGroup();
+            case QuestionType.BeneficialOwners:
+                return this.renderBeneficialOwners();
             default:
                 return unhandledQuestionType(this.props.questionType);
         }
@@ -262,5 +264,9 @@ export class ComplianceFormQuestion extends React.Component<Props> {
                 }
             </div>
         );
+    }
+
+    private renderBeneficialOwners() {
+        return <Alert type="warning" message="Beneficial Owners Stub"></Alert>
     }
 }
